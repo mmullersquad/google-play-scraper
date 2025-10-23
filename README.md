@@ -1,5 +1,9 @@
-# google-play-scraper [![workflow](https://github.com/facundoolano/google-play-scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/facundoolano/google-play-scraper/actions/workflows/tests.yml)
+# @mmullersquad/google-play-scraper
+
 Node.js module to scrape application data from the Google Play store.
+
+[![npm version](https://badge.fury.io/js/%40mmullersquad%2Fgoogle-play-scraper.svg)](https://badge.fury.io/js/%40mmullersquad%2Fgoogle-play-scraper)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Related projects
 
@@ -8,9 +12,18 @@ Node.js module to scrape application data from the Google Play store.
 * [google-play-api](https://github.com/facundoolano/google-play-api): a RESTful API to consume the data produced by this library.
 
 ## Installation
+```bash
+npm install @mmullersquad/google-play-scraper
 ```
-npm install google-play-scraper
-```
+
+## Features
+
+- 🚀 **Dual Module Support**: Works with both CommonJS and ES modules
+- 📦 **TypeScript Support**: Full TypeScript definitions included
+- 🔄 **Memoization**: Built-in caching to avoid duplicate requests
+- ⚡ **Throttling**: Rate limiting to prevent API blocking
+- 🌍 **Multi-language**: Support for different languages and countries
+- 📊 **Comprehensive Data**: App details, reviews, permissions, data safety, and more
 
 ## Usage
 Available methods:
@@ -36,7 +49,7 @@ Retrieves the full detail of an application. Options:
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.app({appId: 'com.google.android.apps.translate'})
   .then(console.log, console.log);
@@ -123,8 +136,8 @@ Results:
 ### list
 Retrieve a list of applications from one of the collections at Google Play. Options:
 
-* `collection` (optional, defaults to `collection.TOP_FREE`): the Google Play collection that will be retrieved. Available options can bee found [here](https://github.com/facundoolano/google-play-scraper/blob/b7669f78766b8306896447ddbe8797fe36eae49f/lib/constants.js#L67).
-* `category` (optional, defaults to no category): the app category to filter by. Available options can bee found [here](https://github.com/facundoolano/google-play-scraper/blob/b7669f78766b8306896447ddbe8797fe36eae49f/lib/constants.js#L10).
+* `collection` (optional, defaults to `collection.TOP_FREE`): the Google Play collection that will be retrieved. Available options can be found [here](https://github.com/mmullersquad/google-play-scraper/blob/main/lib/constants.js#L67).
+* `category` (optional, defaults to no category): the app category to filter by. Available options can be found [here](https://github.com/mmullersquad/google-play-scraper/blob/main/lib/constants.js#L10).
 * `age` (optional, defaults to no age filter): the age range to filter the apps (only for FAMILY and its subcategories). Available options are `age.FIVE_UNDER`, `age.SIX_EIGHT`, `age.NINE_UP`.
 * `num` (optional, defaults to 500): the amount of apps to retrieve.
 * `lang` (optional, defaults to `'en'`): the two letter language code used to retrieve the applications.
@@ -134,7 +147,7 @@ Retrieve a list of applications from one of the collections at Google Play. Opti
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.list({
     category: gplay.category.GAME_ACTION,
@@ -187,7 +200,7 @@ Retrieves a list of apps that results of searching by the given term. Options:
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.search({
     term: "panda",
@@ -233,7 +246,7 @@ Returns the list of applications by the given developer name. Options:
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.developer({devId: "DxCo Games"}).then(console.log);
 ```
@@ -273,7 +286,7 @@ Given a string returns up to five suggestion to complete a search query term. Op
 
 Example:
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.suggest({term: 'panda'}).then(console.log);
 ```
@@ -310,7 +323,7 @@ Options:
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 // This example will return 3000 reviews
 // on a single call
@@ -407,7 +420,7 @@ Returns a list of similar apps to the one specified. Options:
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.similar({appId: "com.dxco.pandavszombies"}).then(console.log);
 ```
@@ -438,7 +451,7 @@ permission/description objects.
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.permissions({appId: "com.dxco.pandavszombies"}).then(console.log);
 ```
@@ -465,7 +478,7 @@ Returns the data safety information of an application. The data safety is catego
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.datasafety({appId: "com.dxco.pandavszombies"}).then(console.log);
 ```
@@ -569,7 +582,7 @@ Retrieve a full list of categories present from dropdown menu on Google Play.
 Example:
 
 ```javascript
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 gplay.categories().then(console.log);
 ```
@@ -593,7 +606,7 @@ to avoid requesting the same data twice. The `memoized` function returns a
 store object that caches its results:
 
 ```js
-import {memoized as m} from "google-play-scraper"; // cache with default options
+import {memoized as m} from "@mmullersquad/google-play-scraper"; // cache with default options
 const memoized = m();// cache with customized options
 const memoizedCustom = m({ maxAge: 1000 * 60 });// cache with customized options
 
@@ -622,7 +635,7 @@ defines an upper bound to the amount of requests that will be attempted per seco
 Once that limit is reached, further requests will be held until the second passes.
 
 ```js
-import gplay from "google-play-scraper";
+import gplay from "@mmullersquad/google-play-scraper";
 
 // the following method will perform batches of 10 requests per second
 gplay.search({term: 'panda', throttle: 10}).then(console.log);
