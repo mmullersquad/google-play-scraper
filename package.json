@@ -1,5 +1,5 @@
 {
-  "name": "google-play-scraper",
+  "name": "@mmullersquad/google-play-scraper",
   "version": "10.0.1",
   "description": "scrapes app data from google play store",
   "type": "module",
@@ -19,23 +19,32 @@
   "scripts": {
     "test": "mocha --timeout 5000",
     "lint": "eslint .",
-    "build": "./build.sh"
+    "build": "./build.sh",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
   },
+  "files": [
+    "dist/",
+    "lib/",
+    "index.js",
+    "index.d.ts"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/facundoolano/google-play-scraper"
+    "url": "https://github.com/mmullersquad/google-play-scraper"
   },
   "keywords": [
     "google",
     "play",
     "scraper"
   ],
-  "author": "Facundo Olano",
+  "author": "Your Name",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/facundoolano/google-play-scraper/issues"
+    "url": "https://github.com/mmullersquad/google-play-scraper/issues"
   },
-  "homepage": "https://github.com/facundoolano/google-play-scraper",
+  "homepage": "https://github.com/mmullersquad/google-play-scraper",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "debug": "^3.1.0",
